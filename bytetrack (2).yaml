@@ -1,0 +1,42 @@
+# bytetrack.yaml
+# 所有跟踪器参数的中央配置文件
+
+tracker_type: bytetrack
+
+# --- 核心 ByteTrack 阈值 ---
+track_high_thresh: 0.5
+track_low_thresh: 0.05
+new_track_thresh: 0.6
+
+# --- 跟踪生命周期 ---
+track_buffer: 60
+
+# --- 关联 (IoU / Score) ---
+# 第1轮: 高分检测 vs 跟踪
+match_thresh: 0.5
+# 第2轮: 低分检测 vs 剩余跟踪
+second_match_thresh: 0.5
+# 第3轮: 未确认跟踪 vs 剩余高分检测
+third_match_thresh: 0.7
+
+fuse_score: True
+mot20: False
+
+# --- 深度关联 (Mahalanobis) ---
+# 2D 运动 (xyah) 门控阈值
+motion_maha_thresh: 0.01
+
+#1D 深度马氏距离匹配阈值
+maha_thresh: 0.1
+
+#动态深度门控因子 (x-sigma)
+depth_gate_factor: 0.1
+
+# --- 深度卡尔曼滤波器 (1D) ---
+depth_kf_R: 5.0      # 测量噪声
+depth_kf_Q_pos: 0.1  # 过程噪声 (位置)
+depth_kf_Q_vel: 0.01 # 过程噪声 (速度)
+
+# --- 深度 ROI ---
+#深度采样区域比例 (包围盒中心的百分比)
+depth_roi_scale: 0.2
